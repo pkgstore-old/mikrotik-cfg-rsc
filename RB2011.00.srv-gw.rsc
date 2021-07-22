@@ -1,5 +1,5 @@
 # MikroTik RB2011.
-# Configuration: Server.
+# Configuration: SRV-Gateway.
 :delay 30s
 /interface bridge
 add name=bridge1
