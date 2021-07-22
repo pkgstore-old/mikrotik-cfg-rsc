@@ -1,4 +1,5 @@
-# MikroTik RB2011
+# MikroTik RB2011.
+# Configuration: Server.
 :delay 30s
 /interface bridge
 add name=bridge1

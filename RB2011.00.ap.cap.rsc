@@ -1,4 +1,5 @@
-# MikroTik RB2011
+# MikroTik RB2011.
+# Configuration: AP-CAP.
 :delay 30s
 /caps-man channel
 add band=2ghz-b/g/n frequency=2412 name=channel1 tx-power=20
