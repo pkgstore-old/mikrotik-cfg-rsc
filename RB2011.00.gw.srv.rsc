@@ -1,5 +1,5 @@
-# MikroTik RB2011.
-# Configuration: SRV-Gateway.
+# Model: RB2011.
+# Configuration: GW-SRV.
 :delay 30s
 /interface bridge
 add name=bridge1
@@ -30,7 +30,7 @@ add address=192.168.0.1/24 interface=bridge1 network=192.168.0.0
 /ip dhcp-client
 add default-route-distance=10 disabled=no interface=ether1 use-peer-ntp=no
 /ip dhcp-server network
-add address=192.168.0.0/24 dns-server=1.1.1.1,1.0.0.1 gateway=192.168.0.1 netmask=24 ntp-server=129.6.15.28,129.6.15.29,129.6.15.30,132.163.96.1,132.163.96.2,132.163.96.3
+add address=192.168.0.0/24 dns-server=1.1.1.1,1.0.0.1 domain=home.local gateway=192.168.0.1 netmask=24 ntp-server=129.6.15.28,129.6.15.29,129.6.15.30,132.163.96.1,132.163.96.2,132.163.96.3
 /ip firewall filter
 add action=accept chain=input comment=main protocol=icmp
 add action=accept chain=input comment=main connection-state=established
@@ -43,20 +43,24 @@ add action=masquerade chain=srcnat out-interface-list=WAN
 /ip service
 set telnet disabled=yes
 set ftp disabled=yes
-set www disabled=yes
+set www address=192.168.0.0/24
 set ssh disabled=yes
 set api disabled=yes
-set winbox disabled=yes
+set winbox address=192.168.0.0/24
 set api-ssl disabled=yes
 /lcd
 set enabled=no
 /system clock
 set time-zone-autodetect=no time-zone-name=Europe/Moscow
 /system identity
-set name=GW-SRV.00
+set name=GW-SRV.01
 /system ntp client
 set enabled=yes server-dns-names=time.cloudflare.com
+/tool bandwidth-server
+set enabled=no
 /tool mac-server
-set allowed-interface-list=LAN
+set allowed-interface-list=none
 /tool mac-server mac-winbox
-set allowed-interface-list=LAN
+set allowed-interface-list=none
+/tool mac-server ping
+set enabled=no
