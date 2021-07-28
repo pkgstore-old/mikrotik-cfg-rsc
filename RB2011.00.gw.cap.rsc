@@ -20,7 +20,7 @@ add channel=ap.03 country=russia datapath=common distance=indoors hw-protection-
 add name=WAN
 add name=LAN
 /ip pool
-add name=dhcp ranges=192.168.0.100-192.168.0.200
+add name=dhcp ranges=10.0.9.1-10.0.9.254
 /ip dhcp-server
 add address-pool=dhcp disabled=no interface=bridge1 name=dhcp1
 /caps-man access-list
@@ -50,11 +50,11 @@ add interface=bridge1 list=LAN
 /interface wireless cap
 set discovery-interfaces=bridge1 enabled=yes interfaces=wlan1
 /ip address
-add address=192.168.0.1/24 interface=bridge1 network=192.168.0.0
+add address=10.0.0.1/16 interface=bridge1 network=10.0.0.0
 /ip dhcp-client
 add default-route-distance=10 disabled=no interface=ether1 use-peer-ntp=no
 /ip dhcp-server network
-add address=192.168.0.0/24 dns-server=1.1.1.1,1.0.0.1 domain=home.local gateway=192.168.0.1 netmask=24 ntp-server=129.6.15.28,129.6.15.29,129.6.15.30,132.163.96.1,132.163.96.2,132.163.96.3
+add address=10.0.0.0/16 dns-server=1.1.1.1,1.0.0.1 domain=home.local gateway=10.0.0.1 netmask=16 ntp-server=129.6.15.28,129.6.15.29,129.6.15.30,132.163.96.1,132.163.96.2,132.163.96.3
 /ip firewall filter
 add action=accept chain=input comment=CAPsMAN dst-address-type=local src-address-type=local
 add action=accept chain=input comment=main protocol=icmp
@@ -68,10 +68,10 @@ add action=masquerade chain=srcnat out-interface-list=WAN
 /ip service
 set telnet disabled=yes
 set ftp disabled=yes
-set www address=192.168.0.0/24
+set www address=10.0.0.0/16
 set ssh disabled=yes
 set api disabled=yes
-set winbox address=192.168.0.0/24
+set winbox address=10.0.0.0/16
 set api-ssl disabled=yes
 /lcd
 set enabled=no

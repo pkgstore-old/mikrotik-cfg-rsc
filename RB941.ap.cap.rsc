@@ -3,10 +3,10 @@
 /ip service
 set telnet disabled=yes
 set ftp disabled=yes
-set www address=192.168.0.0/24
+set www address=10.0.0.0/16
 set ssh disabled=yes
 set api disabled=yes
-set winbox address=192.168.0.0/24
+set winbox address=10.0.0.0/16
 set api-ssl disabled=yes
 /system clock
 set time-zone-autodetect=no time-zone-name=Europe/Moscow
